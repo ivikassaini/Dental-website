@@ -7,12 +7,17 @@
     <title>Booking Appointment Dentique</title>
     <style>
         /* Appointment Section Styles */
-
+        body {
+            /* background: linear-gradient(145deg, #0056b3, white, #007bff, white, #007bff, white, #0056b3); */
+            /* effect: blur(150px); */
+            height: 100vh;
+            background-color: lightcyan;
+        }
 
 
         .appointment {
             /* padding: 0px 0px; */
-            background-color: #ffff;
+            /* background-color: ; */
             text-align: center;
             /* border: 2px solid red; */
         }
@@ -21,16 +26,20 @@
             font-size: 30px;
             color: #00274d;
             margin-bottom: 20px;
+            text-shadow: #0056b3 1px 1px 2px;
         }
 
         .appointment-form {
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            /* padding: 20px; */
             background-color: #00274d;
             /* background:linear-gradient(45deg, #00274d, white) ; */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 10px;
+            box-shadow: 0px 0px 10px 1px #00274d;
         }
 
         .form-group {
@@ -82,7 +91,7 @@
             background-color: #0056b3;
         }
 
-       
+
 
         .close-button {
             position: absolute;
@@ -92,12 +101,12 @@
             border: none;
             font-size: 50px;
             cursor: pointer;
-            color: #333;
+            color: rgb(102, 102, 102);
             transition: color 0.5s;
         }
 
         .close-button:hover {
-            color: #007bff;
+            color: black;
         }
 
         /* maindental.css */
@@ -131,6 +140,7 @@
             color: #00274d;
             font-size: 16px;
             font-weight: bolder;
+            box-shadow: 0px 0px 10px 1px #007bff;
         }
 
         .confirmation-message p {
@@ -152,11 +162,29 @@
         .ok-button:hover {
             background-color: #0056b3;
         }
-        
-        a{
+
+        a {
             text-decoration: none;
         }
 
+        .left {
+            /* width: 50%; */
+            flex: 2;
+            /* border-radius: 8px; */
+        }
+
+        .right {
+            /* width: 50%; */
+            flex: 3;
+            padding: 20px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
     </style>
 </head>
 
@@ -167,33 +195,38 @@
 
         <h2 class="appointment-heading">Book an Appointment</h2>
         <form class="appointment-form" id="appointmentForm">
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
-                    style="text-transform: capitalize;" required>
+            <div class="left">
+                <img src="formimg.jpg" alt="">
             </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            <div class="right">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
+                        style="text-transform: capitalize;" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Preferred Date</label>
+                    <input type="date" id="appointmentDate" name="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentTime">Preferred Time</label>
+                    <input type="time" id="appointmentTime" name="appointmentTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" name="message" rows="4"
+                        placeholder="Any additional information or requests"></textarea>
+                </div>
+                <button class="submit-button">Submit</button>
             </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-            </div>
-            <div class="form-group">
-                <label for="appointmentDate">Preferred Date</label>
-                <input type="date" id="appointmentDate" name="appointmentDate" required>
-            </div>
-            <div class="form-group">
-                <label for="appointmentTime">Preferred Time</label>
-                <input type="time" id="appointmentTime" name="appointmentTime" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Additional Information</label>
-                <textarea id="message" name="message" rows="4"
-                    placeholder="Any additional information or requests"></textarea>
-            </div>
-            <button class="submit-button">Submit</button>
         </form>
     </section>
 
