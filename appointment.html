@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Appointment Dentique</title>
+    <style>
+        /* Appointment Section Styles */
+
+
+
+        .appointment {
+            /* padding: 0px 0px; */
+            background-color: #ffff;
+            text-align: center;
+            /* border: 2px solid red; */
+        }
+
+        .appointment-heading {
+            font-size: 30px;
+            color: #00274d;
+            margin-bottom: 20px;
+        }
+
+        .appointment-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #00274d;
+            /* background:linear-gradient(45deg, #00274d, white) ; */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: white;
+            font-size: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 95%;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            /* border-color: #007bff; */
+            transform: scale(1.01);
+            /* background-color: lightskyblue; */
+            outline: none;
+        }
+
+        .submit-button {
+            display: inline-block;
+            padding: 10px 20px;
+            /* font-size: 1rem; */
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.5s;
+            text-decoration: none;
+            font-weight: bolder;
+            font-size: large;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+       
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 50px;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.5s;
+        }
+
+        .close-button:hover {
+            color: #007bff;
+        }
+
+        /* maindental.css */
+
+        /* Confirmation Overlay Styles */
+        .confirmation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.562);
+            /* Semi-transparent background */
+            display: none;
+            /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+            /* Ensure it's above other content */
+        }
+
+        /* Confirmation Message Styles */
+        .confirmation-message {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #00274d;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+
+        .confirmation-message p {
+            margin-bottom: 20px;
+            /* border: 2px solid red; */
+        }
+
+        .ok-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .ok-button:hover {
+            background-color: #0056b3;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="appointment" id="appointment">
+        <a href="maindental.html" class="close-button" id="closeAppointment">&times;</a>
+
+        <h2 class="appointment-heading">Book an Appointment</h2>
+        <form class="appointment-form" id="appointmentForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
+                    style="text-transform: capitalize;" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="appointmentDate">Preferred Date</label>
+                <input type="date" id="appointmentDate" name="appointmentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="appointmentTime">Preferred Time</label>
+                <input type="time" id="appointmentTime" name="appointmentTime" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Additional Information</label>
+                <textarea id="message" name="message" rows="4"
+                    placeholder="Any additional information or requests"></textarea>
+            </div>
+            <button class="submit-button">Submit</button>
+        </form>
+    </section>
+
+    <!-- Confirmation Message HTML -->
+    <div class="confirmation-overlay" id="confirmationOverlay">
+        <div class="confirmation-message">
+            <p style="color: green; font-size: 20px;">Your appointment has been booked!</p>
+            <p>Full details will be shared with you via email or message.</p>
+            <a href="maindental.html" class="ok-button" id="okButton">OK</a>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Existing code...
+
+            // Show confirmation message after form submission
+            const appointmentForm = document.getElementById('appointmentForm');
+            const confirmationOverlay = document.getElementById('confirmationOverlay');
+            const okButton = document.getElementById('okButton');
+
+            appointmentForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Display the confirmation message
+                confirmationOverlay.style.display = 'flex';
+
+                // Optionally, handle form data here (e.g., send it to a server)
+
+                // Clear the form fields (if needed)
+                appointmentForm.reset();
+            });
+
+            // Hide the confirmation message when OK button is clicked
+            okButton.addEventListener('click', function () {
+                confirmationOverlay.style.display = 'none';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
