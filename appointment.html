@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Appointment Dentique</title>
     <style>
-        /* Appointment Section Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
         body {
             /* background: linear-gradient(145deg, #0056b3, white, #007bff, white, #007bff, white, #0056b3); */
             /* effect: blur(150px); */
             height: 100vh;
-            background-color: lightcyan;
+            font-family: "Raleway", sans-serif;
+            background-color: rgb(236, 255, 255);
         }
 
 
@@ -33,13 +35,13 @@
             max-width: 900px;
             margin: 0 auto;
             /* padding: 20px; */
-            background-color: #00274d;
+            background-color: #005678;
             /* background:linear-gradient(45deg, #00274d, white) ; */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 10px;
-            box-shadow: 0px 0px 10px 1px #00274d;
+            box-shadow: 0px 5px 10px #5f5f5f;
         }
 
         .form-group {
@@ -61,7 +63,8 @@
             padding: 5px 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 16px;
+            line-height: 1.5;
         }
 
         .form-group input:focus,
@@ -109,9 +112,6 @@
             color: black;
         }
 
-        /* maindental.css */
-
-        /* Confirmation Overlay Styles */
         .confirmation-overlay {
             position: fixed;
             top: 0;
@@ -119,16 +119,13 @@
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.562);
-            /* Semi-transparent background */
             display: none;
             /* Hidden by default */
             align-items: center;
             justify-content: center;
             z-index: 1002;
-            /* Ensure it's above other content */
         }
 
-        /* Confirmation Message Styles */
         .confirmation-message {
             background: #fff;
             padding: 20px;
@@ -230,7 +227,6 @@
         </form>
     </section>
 
-    <!-- Confirmation Message HTML -->
     <div class="confirmation-overlay" id="confirmationOverlay">
         <div class="confirmation-message">
             <p style="color: green; font-size: 20px;">Your appointment has been booked!</p>
@@ -244,31 +240,49 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Existing code...
-
-            // Show confirmation message after form submission
             const appointmentForm = document.getElementById('appointmentForm');
             const confirmationOverlay = document.getElementById('confirmationOverlay');
-            const okButton = document.getElementById('okButton');
-
+    
             appointmentForm.addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                // Display the confirmation message
-                confirmationOverlay.style.display = 'flex';
-
-                // Optionally, handle form data here (e.g., send it to a server)
-
-                // Clear the form fields (if needed)
-                appointmentForm.reset();
+                event.preventDefault();
+    
+                const formData = new FormData(appointmentForm);
+                const formObject = {
+                    name: formData.get('fullName'), // Match keys with your server's expected keys
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    date: formData.get('appointmentDate'),
+                    time: formData.get('appointmentTime'),
+                    message: formData.get('message')
+                };
+    
+                fetch('http://localhost:3001/api/appointments', { // Ensure the URL is correct
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Appointment booked successfully') {
+                        confirmationOverlay.style.display = 'flex';
+                        appointmentForm.reset();
+                    } else {
+                        alert('Failed to book appointment. Please try again.', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             });
-
-            // Hide the confirmation message when OK button is clicked
-            okButton.addEventListener('click', function () {
+    
+            document.getElementById('okButton').addEventListener('click', function () {
                 confirmationOverlay.style.display = 'none';
             });
         });
     </script>
+    
 
 </body>
 

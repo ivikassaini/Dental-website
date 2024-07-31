@@ -638,6 +638,7 @@ textarea::placeholder {
 .submit-button {
     background-color: #00274d;
     /* Navy Blue */
+    text-decoration: none;
     color: #ffffff;
     padding: 10px 20px;
     border: none;

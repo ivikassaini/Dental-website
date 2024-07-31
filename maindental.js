@@ -1,28 +1,27 @@
 // maindental.js
 
 document.addEventListener('DOMContentLoaded', function() {
-   // Smooth scrolling for navigation links with offset
-   const navbarLinks = document.querySelectorAll('.nav-menu a');
-   const headerHeight = document.querySelector('.navbar').offsetHeight; // Calculate the header height
-   
-   navbarLinks.forEach(link => {
-       link.addEventListener('click', function(event) {
-           event.preventDefault();
-           const sectionId = this.getAttribute('href');
-           const section = document.querySelector(sectionId);
-           
-           if (section) {
-               const sectionTop = section.offsetTop;
-               const offset = 0; // Additional offset for better spacing
-               
-               window.scrollTo({
-                   top: sectionTop - headerHeight - offset,
-                   behavior: 'smooth'
-               });
-           }
-           
+    // Smooth scrolling for navigation links with offset
+    const navbarLinks = document.querySelectorAll('.nav-menu a');
+    const headerHeight = document.querySelector('.navbar').offsetHeight; // Calculate the header height
+
+    navbarLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const sectionId = this.getAttribute('href');
+            const section = document.querySelector(sectionId);
+
+            if (section) {
+                const sectionTop = section.offsetTop;
+                const offset = 0; // Additional offset for better spacing
+
+                window.scrollTo({
+                    top: sectionTop - headerHeight - offset,
+                    behavior: 'smooth'
+                });
+            }
         });
-   });
+    });
 
     // Scroll to top functionality for fixed circle
     const scrollToTop = document.getElementById('scrollToTop');
@@ -39,43 +38,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const feedbackConfirmationOverlay = document.getElementById('feedbackConfirmationOverlay');
     const closeFeedbackButton = document.getElementById('closeFeedbackButton');
 
-    feedbackForm.addEventListener('submit', function(event) {
+    feedbackForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent the default form submission
 
-        // Display the feedback confirmation message
-        feedbackConfirmationOverlay.style.display = 'flex';
+        // Collect form data
+        const name = document.getElementById('footer-name').value;
+        const email = document.getElementById('footer-email').value;
+        const feedback = document.getElementById('footer-feedback').value;
 
-        // Optionally, handle form data here (e.g., send it to a server)
+        try {
+            // Send feedback data to the server
+            const response = await fetch('http://localhost:3001/api/feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, feedback }),
+            });
 
-        // Clear the form fields (if needed)
-        feedbackForm.reset();
+            if (response.ok) {
+                // Display the feedback confirmation message
+                feedbackConfirmationOverlay.style.display = 'flex';
+
+                // Clear the form fields
+                feedbackForm.reset();
+            } else {
+                alert('There was an error submitting your feedback. Please try again later.');
+            }
+        } catch (error) {
+            console.error('Error submitting feedback:', error);
+            alert('An unexpected error occurred. Please try again later.');
+        }
     });
 
     // Hide the feedback confirmation message when close button is clicked
     closeFeedbackButton.addEventListener('click', function() {
         feedbackConfirmationOverlay.style.display = 'none';
     });
-
-    // // Highlight the active section link in the navbar
-    // const sections = document.querySelectorAll('section');
-    // const navItems = document.querySelectorAll('.nav-menu a');
-
-    // window.addEventListener('scroll', () => {
-    //     let current = '';
-
-    //     sections.forEach(section => {
-    //         const sectionTop = section.offsetTop;
-    //         const sectionHeight = section.clientHeight;
-    //         if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-    //             current = section.getAttribute('id');
-    //         }
-    //     });
-
-    //     navItems.forEach(link => {
-    //         link.classList.remove('active');
-    //         if (link.getAttribute('href').includes(current)) {
-    //             link.classList.add('active');
-    //         }
-    //     });
-    // });
 });
