@@ -1,9 +1,9 @@
-// maindental.js
+
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for navigation links with offset
+    
     const navbarLinks = document.querySelectorAll('.nav-menu a');
-    const headerHeight = document.querySelector('.navbar').offsetHeight; // Calculate the header height
+    const headerHeight = document.querySelector('.navbar').offsetHeight; 
 
     navbarLinks.forEach(link => {
         link.addEventListener('click', function(event) {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (section) {
                 const sectionTop = section.offsetTop;
-                const offset = 0; // Additional offset for better spacing
+                const offset = 0; 
 
                 window.scrollTo({
                     top: sectionTop - headerHeight - offset,
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Scroll to top functionality for fixed circle
+    
     const scrollToTop = document.getElementById('scrollToTop');
 
     scrollToTop.addEventListener('click', function() {

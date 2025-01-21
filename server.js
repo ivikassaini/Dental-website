@@ -6,15 +6,15 @@ const cors = require('cors');
 const app = express();
 const PORT = 3001;
 
-// Middleware
+
 app.use(cors());
 app.use(bodyParser.json());
 
-// MySQL Database Connection
+
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'root', // Use your MySQL username
-    password: 'Python@123', // Use your MySQL password
+    user: 'root', 
+    password: 'Python@123', 
     database: 'dental_clinic'
 });
 
@@ -26,7 +26,7 @@ db.connect(err => {
     console.log('Connected to MySQL database.');
 });
 
-// Appointment Submission Endpoint
+
 app.post('/api/appointments', (req, res) => {
     const { name, email, phone, date, time, message } = req.body;
 
@@ -41,7 +41,7 @@ app.post('/api/appointments', (req, res) => {
     });
 });
 
-// Feedback Submission Endpoint
+
 app.post('/api/feedback', (req, res) => {
     const { name, email, feedback } = req.body;
 
@@ -56,7 +56,7 @@ app.post('/api/feedback', (req, res) => {
     });
 });
 
-// Start the Server
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

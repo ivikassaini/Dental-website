@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Appointment Dentique</title>
+    <link rel="stylesheet" href="../css/appointment.css">
+</head>
+
+<body>
+
+    <section class="appointment" id="appointment">
+        <a href="../html/maindental.html" class="close-button" id="closeAppointment">&times;</a>
+
+        <h2 class="appointment-heading">Book an Appointment</h2>
+        <form class="appointment-form" id="appointmentForm">
+            <div class="left">
+                <img src="../../assets/formimg.jpg" alt="">
+            </div>
+            <div class="right">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
+                        style="text-transform: capitalize;" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Preferred Date</label>
+                    <input type="date" id="appointmentDate" name="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentTime">Preferred Time</label>
+                    <input type="time" id="appointmentTime" name="appointmentTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" name="message" rows="4"
+                        placeholder="Any additional information or requests"></textarea>
+                </div>
+                <button class="submit-button">Submit</button>
+            </div>
+        </form>
+    </section>
+
+    <div class="confirmation-overlay" id="confirmationOverlay">
+        <div class="confirmation-message">
+            <p style="color: green; font-size: 20px;">Your appointment will be booked!</p>
+            <p>A confirmation phone will come from our side.</p>
+            <a href="../html/maindental.html" class="ok-button" id="okButton">OK</a>
+        </div>
+    </div>
+
+
+    <script src="../js/appointment.js"></script>
+
+    
+    
+
+</body>
+
+</html>

@@ -16,19 +16,13 @@ body {
 }
 
 .fixed-header {
-    /* position: fixed;
-    top: 0;
-    left: 0; */
     width: 100vw;
     background-color: #00274d;
-    /* Navy Blue */
     color: #ffffff;
-    /* White text */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    /* z-index: 3000; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-weight: 600;
 }
@@ -54,12 +48,9 @@ body {
     justify-content: space-around;
     align-items: center;
     background-color: #ffffff;
-    /* White background for the navbar */
     padding: 10px 0px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid #dddddd;
-    /* Light grey border */
-    /* margin-top: 40px; */
     width: 100vw;
     position: sticky;
     z-index: 1000;
@@ -121,7 +112,7 @@ body {
 }
 
 .left-side h1 {
-    font-size: 40px;
+    font-size: 4.5rem;
     margin: 0 0 20px;
     color: #00274d;
     font-weight: bolder;
@@ -169,7 +160,6 @@ body {
 }
 
 .clinic-image {
-    /* width: 90%; */
     height: 95%;
     background-size: cover;
     object-fit: cover;
@@ -180,7 +170,6 @@ body {
 
 .clinic-image:hover {
     transform: scale(1.05);
-    /* transform: scaleX(1);    */
 }
 
 .right-side::after{
@@ -267,11 +256,9 @@ body {
     flex: 2;
     display: flex;
     justify-content: space-around;
-    /* flex-direction: column; */
     flex-wrap: wrap;
     gap: 10px;
     height: 100%;
-    /* border: 2px solid black; */
     padding: 70px 20px 20px 20px;
 }
 
@@ -283,7 +270,7 @@ body {
     padding: 15px 20px;
     border-radius: 8px;
     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-    transition: transform 0.5s ease-in-out;
+    transition: all 0.4s ;
     font-size: 18px;
     font-weight: bold;
     display: flex;
@@ -296,13 +283,13 @@ body {
     box-shadow: 0px 0px 10px 1px #0056b3;
 }
 
-/* .service-card:hover {
-    transform: scale(1.05);
-    background-color: #0056b3;
-    color: white;
+.service-card:hover {
+    transform: scale(1.1);
+    background-color: white;
+    color: #0056b3;
     box-shadow: 1px 1px 5px 0px #007bff;
 
-} */
+}
 
 .about-us {
     padding: 40px 20px;
