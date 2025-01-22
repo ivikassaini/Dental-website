@@ -12,27 +12,28 @@ document.addEventListener('DOMContentLoaded', function () {
             phone: formData.get('phone'),
             date: formData.get('appointmentDate'),
             time: formData.get('appointmentTime'),
-            message: formData.get('message')
+            message: formData.get('message'),
         };
 
         fetch('http://localhost:3001/api/appointments', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formObject)
+            body: JSON.stringify(formObject),
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === 'Appointment booked successfully') {
+            .then(async response => {
+                if (response.ok) {
                     confirmationOverlay.style.display = 'flex';
                     appointmentForm.reset();
                 } else {
-                    alert('Failed to book appointment. Please try again.', data.message);
+                    const errorData = await response.json();
+                    alert(`Failed to book appointment: ${errorData.message}`);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                alert('An unexpected error occurred. Please try again.');
             });
     });
 
