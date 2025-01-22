@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeFeedbackButton = document.getElementById('closeFeedbackButton');
 
     feedbackForm.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); 
 
         // Collect form data
         const name = document.getElementById('footer-name').value;

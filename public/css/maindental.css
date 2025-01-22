@@ -9,9 +9,7 @@ body {
     width: 100vw;
     font-family: Arial, sans-serif;
     background-color: #ffffff;
-    /* White background */
     color: #333333;
-    /* Dark text color for better readability */
     overflow-x: hidden
 }
 
@@ -69,8 +67,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 60px;
-    /* margin-right: 50px; */
+    gap: 60px;/
 }
 
 .nav-menu li {
@@ -98,7 +95,6 @@ body {
     align-items: center;
     padding: 30px 60px 10px 40px;
     margin-top: 20px;
-    /* Adjust based on header height */
     /* border: 2px solid brown; */
     height: 550px;
     /* background-color: #f8f9fa; */

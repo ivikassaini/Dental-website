@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const nodemailer = require('nodemailer'); // Import Nodemailer for sending emails
+const nodemailer = require('nodemailer'); 
 
 const app = express();
 const PORT = 3001;
@@ -45,15 +45,15 @@ app.post('/api/appointments', (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'vickydelhi03@gmail.com', // Replace with your email
-                pass: 'jzyy aotg hazo vdzh', // Replace with your email app password
+                user: 'vickydelhi03@gmail.com', 
+                pass: 'jzyy aotg hazo vdzh', 
             },
         });
 
         // Email content
         const mailOptions = {
-            from: 'vickydelhi03@gmail.com', // Sender's email
-            to: email, // Recipient's email
+            from: 'vickydelhi03@gmail.com', 
+            to: email, 
             subject: 'Appointment Confirmation',
             text: `Hello ${name},\n\nYour appointment is confirmed for ${date} at ${time}.\n\nThank you for choosing our clinic!\n\nBest regards,\nDental Clinic Team`,
         };
